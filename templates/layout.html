@@ -11,8 +11,9 @@
   <body>
     <nav>
       <a href="/admin">Admin 🔒</a> | <a href="/">Home 🏠</a> |
+      <a href="{% url 'posts_list' %}">Posts📰</a> |
       <a href="/about">About me😀</a> | <a href="/users/register/">Register</a> |
-      <a href="{% url 'posts_list' %}">Posts📰</a>
+      <a href="/users/login/">Login</a> 
     </nav>
     <main>{% block content %} {% endblock content %}</main>
   </body>
