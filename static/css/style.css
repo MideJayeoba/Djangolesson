@@ -404,8 +404,33 @@ p {
 }
 
 /* Error Message Styling */
-.form-with-validation .error {
+.errorlist {
     color: #e74c3c;
     font-size: 0.9rem;
     margin-bottom: 10px;
+}
+
+.errorlist li::marker {
+  content: '🚨 ';
+}
+
+/* for the logout function/code */
+.logout {
+  display: inline-block;
+  margin-right: 1rem; /* Add some spacing between buttons */
+}
+
+.logout-button {
+  font-size: 1.2rem; /* Adjust font size as needed */
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: #007bff; /* Blue background */
+  color: #fff; /* White text */
+  border: none;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #0062cc; /* Darker blue on hover */
+  opacity: 0.85;
 }

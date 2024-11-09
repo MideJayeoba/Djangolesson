@@ -12,8 +12,19 @@
     <nav>
       <a href="/admin">Admin 🔒</a> | <a href="/">Home 🏠</a> |
       <a href="{% url 'posts_list' %}">Posts📰</a> |
-      <a href="/about">About me😀</a> | <a href="/users/register/">Register</a> |
-      <a href="/users/login/">Login</a> 
+      <a href="/about">About me😀</a> |
+      <a href="/users/register/">Register</a> |
+      <a href="/users/login/">Login</a> |
+      <form class="logout" action="{% url 'users:logout_user' %}" method="post">
+        {% csrf_token %}
+        <button
+          class="logout-button"
+          aria-label="User Logout"
+          title="User Logout"
+        >
+          Bye
+        </button>
+      </form>
     </nav>
     <main>{% block content %} {% endblock content %}</main>
   </body>
