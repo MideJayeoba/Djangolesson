@@ -9,23 +9,79 @@
     <script src="{% static 'js/main.js' %}" defer></script>
   </head>
   <body>
-    <nav>
-      <a href="/admin">Admin 🔒</a> | <a href="/">Home 🏠</a> |
-      <a href="{% url 'posts_list' %}">Posts📰</a> |
-      <a href="/about">About me😀</a> |
-      <a href="/users/register/">Register</a> |
-      <a href="/users/login/">Login</a> |
-      <form class="logout" action="{% url 'users:logout_user' %}" method="post">
-        {% csrf_token %}
-        <button
-          class="logout-button"
-          aria-label="User Logout"
-          title="User Logout"
-        >
-          Bye
+    <!-- HTML -->
+    <nav id="mainNav">
+      <a href="/about">
+        <img
+          class="logo"
+          src="/media/profile.webp"
+          alt="A picture of Mide Jayeoba"
+        />
+      </a>
+      <div class="nav-brand">
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+          <span class="hamburger-line">✖</span>
         </button>
-      </form>
+      </div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="/admin">Admin 🔒</a>
+        <a href="/">Home 🏠</a>
+        <a href="{% url 'posts_list' %}">Posts📰</a>
+        <a href="/about">About me😀</a>
+        <a href="/posts/new-post/">New</a>
+        <a href="/users/register/">Register</a>
+        <a href="/users/login/">Login</a>
+
+        <form
+          class="logout"
+          action="{% url 'users:logout_user' %}"
+          method="post"
+        >
+          {% csrf_token %}
+          <button
+            class="logout-button"
+            aria-label="User Logout"
+            title="User Logout"
+          >
+            Logout
+          </button>
+        </form>
+      </div>
     </nav>
+
+    <!-- JavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const hamburger = document.getElementById("hamburgerBtn");
+        const navLinks = document.getElementById("navLinks");
+        const mainNav = document.getElementById("mainNav");
+
+        hamburger.addEventListener("click", function () {
+          navLinks.classList.toggle("active");
+          mainNav.classList.toggle("open");
+          hamburger.classList.toggle("active");
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function (event) {
+          if (
+            !mainNav.contains(event.target) &&
+            navLinks.classList.contains("active")
+          ) {
+            navLinks.classList.remove("active");
+            mainNav.classList.remove("open");
+            hamburger.classList.remove("active");
+          }
+        });
+      });
+    </script>
+
     <main>{% block content %} {% endblock content %}</main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Mide Jayeoba</p>
+    </footer>
   </body>
 </html>

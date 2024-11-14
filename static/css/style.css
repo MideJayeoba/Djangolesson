@@ -147,6 +147,24 @@ nav a {
   transition: color 0.3s ease;
 }
 
+.logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  border-color: #3498db;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 /* Link Hover Effect - Animated Underline */
 nav a::before {
   content: "";
@@ -183,8 +201,18 @@ nav a::after {
   z-index: -1;
 }
 
+/* Active link state */
+nav a.active {
+  background: #3498db;
+}
+
 nav a:hover::after {
   transform: scale(1.5);
+}
+
+/* To hide the menu button when on pc screen */
+.hamburger {
+  visibility: hidden;
 }
 
 /* Floating Navbar Effect */
@@ -226,31 +254,75 @@ nav a:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
+/* Responsive design */
+@media screen and (max-width: 768px) {
   nav {
-    padding: 8px 15px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+  }
+  /* show menu only on mobile */
+  .hamburger {
+    visibility: visible;
   }
 
-  nav a {
-    font-size: 0.9rem; /* Reduces font size further on medium screens */
-    padding: 6px 10px;
-    margin: 0 6px;
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  nav a,
+  .logout {
+    display: none;
+  }
+
+  nav.open a,
+  nav.open .logout {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0.5rem;
+  }
+
+  nav.open .logout {
+    margin-top: 0.5rem;
+  }
+
+  nav::after {
+    content: "☰";
+    font-size: 24px;
+    color: #ecf0f1;
+    cursor: pointer;
+  }
+
+  nav.open::after {
+    content: "✕";
   }
 }
 
-@media (max-width: 480px) {
-  nav {
-    padding: 6px 10px;
-    flex-wrap: wrap; /* Allows links to wrap on smaller screens */
-  }
+/* Focus states for accessibility */
+nav a:focus,
+.logout-button:focus {
+  outline: 3px solid #3498db;
+  outline-offset: 2px;
+}
 
-  nav a {
-    font-size: 0.8rem; /* Even smaller font size for mobile screens */
-    padding: 5px 8px;
-    margin: 3px;
+/* Optional: Add subtle animation for the entire navbar */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
+nav {
+  animation: fadeIn 0.5s ease-out;
+}
+
 /* Main content area styling */
 main {
   max-width: 900px;
@@ -362,13 +434,13 @@ p {
 .form-with-validation input[type="password"],
 .form-with-validation select,
 .form-with-validation textarea {
-    width: 100%;
-    padding: 10px 15px;
-    margin: 10px 0 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: border-color 0.3s;
+  width: 100%;
+  padding: 10px 15px;
+  margin: 10px 0 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
 }
 
 .form-with-validation input[type="text"]:focus,
@@ -376,42 +448,42 @@ p {
 .form-with-validation input[type="password"]:focus,
 .form-with-validation select:focus,
 .form-with-validation textarea:focus {
-    border-color: #3498db;
-    outline: none;
+  border-color: #3498db;
+  outline: none;
 }
 
 /* Submit Button Styling */
 .btn {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #3498db;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #3498db;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .btn:hover {
-    background-color: #2980b9;
+  background-color: #2980b9;
 }
 
 /* CSRF Token Styling */
 .form-with-validation input[name="csrfmiddlewaretoken"] {
-    display: none;
+  display: none;
 }
 
 /* Error Message Styling */
 .errorlist {
-    color: #e74c3c;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
 }
 
 .errorlist li::marker {
-  content: '🚨 ';
+  content: "🚨 ";
 }
 
 /* for the logout function/code */
@@ -424,13 +496,136 @@ p {
   font-size: 1.2rem; /* Adjust font size as needed */
   padding: 0.5rem 1rem;
   border-radius: 5px;
-  background-color: #007bff; /* Blue background */
+  background-color: #15aa47; /* Blue background */
   color: #fff; /* White text */
   border: none;
   cursor: pointer;
 }
 
 .logout-button:hover {
-  background-color: #0062cc; /* Darker blue on hover */
+  background-color: #7a9fc6; /* Darker blue on hover */
   opacity: 0.85;
+}
+
+/* This is the CSS for the homepage  */
+.container {
+  max-width: 1000px;
+  width: 100%;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Section */
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #3498db;
+  margin: 0;
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Skills Section */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.skill-item {
+  background-color: #3498db;
+  color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: transform 0.2s ease;
+}
+
+.skill-item:hover {
+  transform: scale(1.05);
+  background-color: #2e8bd5;
+}
+
+/* Portfolio Section */
+.portfolio {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.project-item {
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-item h3 {
+  font-size: 1.5rem;
+  color: #3498db;
+}
+
+.project-item p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.project-item a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.project-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Personal Statement & Contact Section */
+section {
+  margin: 20px 0;
+}
+
+section h2 {
+  font-size: 1.8rem;
+  color: #3498db;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+
+section p {
+  font-size: 1rem;
+  color: #333;
+  text-align: left;
+}
+
+section a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+section a:hover {
+  color: #2e8bd5;
+}
+
+@media (min-width: 600px) {
+  .portfolio {
+    grid-template-columns: 1fr 1fr;
+  }
 }

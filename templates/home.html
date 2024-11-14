@@ -1,10 +1,55 @@
-{% extends "layout.html" %} 
-{% block title %} 
-    Home 
-{% endblock title %} 
-
+{% extends "layout.html" %} {% block title %} Home {% endblock title %} 
 {% block content %}
 <h1>Home</h1>
-<p>Welcome to Mide website, feel free to ask any question</p>
-<p>Learn more about us <a href="/about">here</a>.</p>
-{% endblock %}
+    <div class="container">
+        <!-- Introduction Section -->
+        <header>
+            <h1>Mide Jayeoba</h1>
+            <p>Python Developer & Musician passionate about tech and creative solutions.</p>
+        </header>
+
+        <!-- Skills and Services Section -->
+        <section>
+            <h2>Skills & Services</h2>
+            <div class="skills">
+                <div class="skill-item">Python Development</div>
+                <div class="skill-item">Music Technology</div>
+                <div class="skill-item">Software Development</div>
+                <div class="skill-item">Photography and visuals</div>
+                <div class="skill-item">Problem Solving</div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section>
+            <h2>Featured Work</h2>
+            <div class="portfolio">
+                <div class="project-item">
+                    <h3>Project 1: Python-Based Tool</h3>
+                    <p> I developed a website, both the frontend and backen using Django web framework. <a href="https://github.com/MideJayeoba/Djangolesson">View on GitHub</a></p>
+                </div>
+                <div class="project-item">
+                    <h3>Project 2: Music Tech Experiment (on going).</h3>
+                    <p>Working on a audio book app that allows you upload your PDFs, uses artificial intelligence to get what your specific needs and read it out based on that, it can also add background music based on the context of the PDF. <a href="#">View on GitHub</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Statement Section -->
+        
+        <section>
+            <h2>Check out more about me in the "about" section. </h2>
+        <p><a href="about/">About Me</a></p>
+        </section>
+        
+            
+        
+
+        <!-- Contact Information Section -->
+        <section text-align="left">
+            <h2>Contact Me</h2>
+            <p>Feel free to connect with me on <a href="https://www.linkedin.com/in/mide-jayeoba-95758723a/">LinkedIn</a> or check out my <a href="https://github.com/MideJayeoba">GitHub</a> for more projects. Alternatively, you can <a href="mailto:jayeobapeace19459@gmail.com">email me</a> directly.</p>
+        </section>
+    </div>
+
+{% endblock content %}

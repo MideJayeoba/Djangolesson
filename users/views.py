@@ -20,7 +20,10 @@ def login_user(request):
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             login(request, form.get_user())
-            return redirect("posts_list")
+            if 'next' in request.POST:
+                return redirect('next')
+            else:
+                return redirect("posts_list")
     else:
         form = AuthenticationForm
     
